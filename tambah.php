@@ -29,6 +29,13 @@ if(isset($_POST["submit"])) {
 
 	$bln_thn = $bulan." ".$tahun;
 
+	$queryCek = mysqli_query($koneksi, "SELECT * FROM tb_penjualan WHERE bln_thn = '$bln_thn'");
+	$cekResult = mysqli_fetch_array($queryCek);
+
+	if($cekResult) {
+		$pesan_error[]= "bulan pada tahun tersebut sudah terdaftar"; 
+	}
+
 
 	if (!$pesan_error) {
 		$bln_thn = mysqli_real_escape_string($koneksi,$bln_thn);
