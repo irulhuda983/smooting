@@ -58,13 +58,14 @@ if (isset($_POST["submit"])) {
 		$pesan_error[]= "Data aktual belum di isi!";
 	}
 
+	$bln_thn = $bulan." ".$tahun;
+
 
 	if ((!$pesan_error) AND ($_POST["submit"]=="Update Data")) {
 
 		$id = mysqli_real_escape_string($koneksi,$id);
 		$bulan = mysqli_real_escape_string ($koneksi,$bulan);
 		$tahun = mysqli_real_escape_string ($koneksi,$tahun);
-		$bln_thn = $bulan." ".$tahun;
 		$d_aktual = mysqli_real_escape_string($koneksi,$d_aktual);
 
 		$queryupdate = "update tb_penjualan set ";
@@ -77,11 +78,12 @@ if (isset($_POST["submit"])) {
 			$pesan_sukses = "Data penjualan bulan \"<b>$bln_thn</b>\" berhasil diupdate!";
 			$pesan_sukses = urlencode($pesan_sukses);
 			header("Location: data.php?pesan_sukses={$pesan_sukses}");
+			mysqli_free_result($resultquery);
 		}
 		else {
-			die("Query gagal dijalankan: ".mysqli_errno($koneksi)." - ".mysqli_error($koneksi));
+			$pesan_error[]= "Gagal tambah data pastikan data yang anda masukkan belum ada dalam list!";
+			// die("Query gagal dijalankan: ".mysqli_errno($koneksi)." - ".mysqli_error($koneksi));
 		}
-		mysqli_free_result($resultquery);
 	}
 	mysqli_close($koneksi);
 }
