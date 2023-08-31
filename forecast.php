@@ -110,7 +110,18 @@ if (isset($_POST["submit"])) {
 						<div class="col-sm-8">
 							<form action="forecast.php" method="post" name="ubah_alpha">
 								<div class="form-check form-check-inline">
-									<input class="form-control" type="text" name="nilai_alpha" placeholder="Ganti Nilai Alpha" style="width:400px;">
+									<select name="nilai_alpha" class="form-control" required>
+                            <option disabled selected>-Pilih Nilai Alpa-</option>
+                            <option value="0.1">0.1</option>
+                            <option value="0.2"> 0.2 </option>
+                            <option value="0.3">0.3</option>
+                            <option value="0.4"> 0.4 </option>
+                            <option value="0.5">0.5</option>
+                            <option value="0.6"> 0.6 </option>
+                            <option value="0.7">0.7</option>
+                            <option value="0.8"> 0.8 </option>
+                            <option value="0.9"> 0.9 </option>
+                        </select>  
 									<input type="hidden" name="id_alpha" value="<?php echo $data_alpha['id_alpha']; ?>">
 									<input class="btn btn-success" type="submit" name="submit" value="Ganti Alpha" style="margin-left:10px;">
 								</div>
